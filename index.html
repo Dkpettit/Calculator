@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="manifest" href="./manifest.json">
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script>
+        if (navigator.serviceWorker.controller) {
+    console.log("Active service worker found");
+    } 
+    else {
+        navigator.serviceWorker
+        .register("serviceWorker.js", {
+        scope: "./"
+        })
+        .then(function (reg) {
+        console.log("Service worker  registered");
+        });
+    }
+
+    </script>
+    <title>Javascript Calculator</title>
+</head>
+<body>
+    <div class="calculator__title"><p>Welcome to my Calculator...</p></div>
+    <div class="calculator__container"id="container">
+        <div class="output">
+            <div class="operand1 data__operand2" id="operand2"></div>
+            <div class="operand2 data__operand1" id="operand1"></div>
+        </div>        
+    </div>
+    <a href="https://www.flaticon.com/free-icons/calculator" title="calculator icons">Calculator icons created by srip - Flaticon</a>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>
