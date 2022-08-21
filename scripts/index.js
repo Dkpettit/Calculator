@@ -4,9 +4,10 @@ var operand1 = document.getElementById('operand1')
 var operand2 = document.getElementById('operand2')
 
 var operationsButtons = []
-
+var strArr = [];
 var equation = "";
-
+var myTotal;
+var flag = false;
 
 // Create calculator buttons and push to buttonList[]
 
@@ -98,17 +99,19 @@ operationsButtons.forEach(element => {
     ids.push(element.id)
 });
 
-var flag = false;
 // Add EventListener to the document
 document.addEventListener('click',function(e){   
-    
-    
+
+    if(myTotal > 0){
+        equation = myTotal;
+        myTotal = 0;
+    }
 
     if(ids.includes(e.target.id,0)) {
 
         var myValue = e.target.id.toString() === "÷" ? "/" : e.target.id.toString();        
         if(e.target.id === "="){
-            var myTotal = computeResults(equation);
+            myTotal = computeResults(equation);
             operand2.innerHTML += "=";
             operand1.innerHTML = myTotal;
         }  
@@ -116,16 +119,19 @@ document.addEventListener('click',function(e){
             clear();
             return;
         }
-        else if(e.target.id === "del"){            
-           equation = equation.slice(0, equation.length - 1);
-           if(ids.includes(equation.slice(-1))){
-            equation = equation.slice(0, equation.length - 1);
-           }           
+        else if(e.target.id === "del"){        
+           strArr.pop();
+           if(ids.includes(strArr[strArr.length -1])){
+            strArr.pop();
+           }       
+            equation = strArr.join("");    
             operand2.innerHTML = equation;
-            operand1.innerHTML = equation.slice(-1);
+            operand1.innerHTML = strArr[strArr.length -1];
+            //strArr = [...equation];
             return;
         }
         equation += myValue;
+        operand2.innerHTML = equation
         flag = true;
 
     }
@@ -144,6 +150,8 @@ document.addEventListener('click',function(e){
             
         }
     }
+
+    strArr = [...equation];
    
  });
 
@@ -155,7 +163,6 @@ document.addEventListener('click',function(e){
     operand1.innerHTML = "";
     operand2.innerHTML = "";
     equation = ""
-
  }
 
  

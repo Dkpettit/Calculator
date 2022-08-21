@@ -5,24 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="manifest" href="./manifest.json">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script>
-        if (navigator.serviceWorker.controller) {
-    console.log("Active service worker found");
-    } 
-    else {
-        navigator.serviceWorker
-        .register("serviceWorker.js", {
-        scope: "./"
-        })
-        .then(function (reg) {
-        console.log("Service worker  registered");
-        });
-    }
-
-    </script>
+    
     <title>Javascript Calculator</title>
+    <link rel="shortcut icon" href="./images/icons-192.png" type="image/x-icon">  
 </head>
 <body>
     <div class="calculator__title"><p>Welcome to my Calculator...</p></div>
